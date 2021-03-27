@@ -1,1 +1,35 @@
-#include
+#include<stdio.h>
+#include<stdlib.h>
+struct Sinhvien {
+	char HovaTen[30];
+	char GioiTinh[40];
+	char Noisinh[30];
+	char Masinhvien[30];
+	int Namsinh;
+};
+void nhapSinhvien (Sinhvien *sv);
+void xuatSinhvien (Sinhvien *sv);
+void nhapSinhvien (Sinhvien *danhsach, int &soluong);
+void xuatSinhvien (Sinhvien *danhsach, int &soluong);
+int main(){
+	Sinhvien *sv;
+	Sinhvien *danhsach;
+	int soluong;
+	sv = (Sinhvien*) malloc(sizeof(Sinhvien));
+	nhapSinhvien(danhsach,soluong);
+	xuatSinhvien(danhsach,soluong);
+}
+void nhapSinhvien (Sinhvien *sv){
+	fflush(stdin);
+	printf("\n--Thong tin sinh vien--");
+	printf("\nHo va Ten: ");
+	gets(sv->HovaTen);
+	printf("Ma sinh vien: ");
+	gets(sv->Masinhvien);
+	printf("Gioi tinh: ");
+	gets(sv->GioiTinh);
+	printf("Noi sinh: ");
+	gets(sv->Noisinh);
+	printf("Nam sinh: ");
+	scanf("%d", &sv->Namsinh);
+}
