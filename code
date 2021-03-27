@@ -9,8 +9,8 @@ struct Sinhvien {
 };
 void nhapSinhvien (Sinhvien *sv);
 void xuatSinhvien (Sinhvien *sv);
-void nhapSinhvien (Sinhvien *danhsach, int &soluong);
-void xuatSinhvien (Sinhvien *danhsach, int &soluong);
+void nhapSinhvien (Sinhvien *&danhsach, int &soluong);
+void xuatSinhvien (Sinhvien *danhsach, int soluong);
 int main(){
 	Sinhvien *sv;
 	Sinhvien *danhsach;
@@ -32,4 +32,29 @@ void nhapSinhvien (Sinhvien *sv){
 	gets(sv->Noisinh);
 	printf("Nam sinh: ");
 	scanf("%d", &sv->Namsinh);
+}
+void xuatSinhvien (Sinhvien *sv){
+	fflush(stdin);
+	printf("\n--Thong tin sinh vien da nhap--");
+	printf("\nHo va Ten: %s", sv->HovaTen);
+	printf("\nMa sinh vien: %s", sv->Masinhvien);
+	printf("\nGioi tinh: %s", sv->GioiTinh);
+	printf("\nNoi sinh: %s", sv->Noisinh);
+	printf("\nNam sinh: %d", sv->Namsinh);
+}
+void nhapSinhvien (Sinhvien *&danhsach, int &soluong){
+	printf("\nNhap so luong sinh vien: ");
+	scanf("%d", &soluong);
+	danhsach=(Sinhvien*)malloc(soluong*sizeof(Sinhvien));
+	for(int i=0; i<soluong; i++){
+		printf("\nNhap sinh vien thu %d: ", i+1);
+		nhapSinhvien (&*(danhsach+i));
+	}
+}
+void xuatSinhvien (Sinhvien *danhsach, int soluong){
+	printf("\n---Danh sach sinh vien---");
+	for(int i=0; i<soluong; i++){
+		printf("\nSinh vien thu: %d", i+1);
+		xuatSinhvien (danhsach+i);
+	}
 }
