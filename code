@@ -9,15 +9,18 @@ struct Sinhvien {
 };
 void nhapSinhvien (Sinhvien *sv);
 void xuatSinhvien (Sinhvien *sv);
-void nhapSinhvien (Sinhvien *&danhsach, int &soluong);
-void xuatSinhvien (Sinhvien *danhsach, int soluong);
+void nhapSinhvien (Sinhvien *&sv, int &soluong);
+void xuatSinhvien (Sinhvien *sv, int soluong);
+void sapxepSinhvientheoTinh(Sinhvien *sv, int soluong);
+void hienthiThongtin(Sinhvien *sv, int soluong);
 int main(){
 	Sinhvien *sv;
-	Sinhvien *danhsach;
 	int soluong;
-	sv = (Sinhvien*) malloc(sizeof(Sinhvien));
-	nhapSinhvien(danhsach,soluong);
-	xuatSinhvien(danhsach,soluong);
+	nhapSinhvien(sv ,soluong);
+	sapxepSinhvientheoTinh(sv,soluong);
+	printf("-----Danh sach sap xep theo noi sinh-----\n");
+	printf("%-15s %-10s %-10s %-10s %-10s\n", "Ma sinh vien", "Ho va Ten", "Nam sinh", "Gioi tinh", "Noi sinh");
+	hienthiThongtin(sv,soluong);
 }
 void nhapSinhvien (Sinhvien *sv){
 	fflush(stdin);
@@ -42,19 +45,36 @@ void xuatSinhvien (Sinhvien *sv){
 	printf("\nNoi sinh: %s", sv->Noisinh);
 	printf("\nNam sinh: %d", sv->Namsinh);
 }
-void nhapSinhvien (Sinhvien *&danhsach, int &soluong){
+void nhapSinhvien (Sinhvien *&sv, int &soluong){
 	printf("\nNhap so luong sinh vien: ");
 	scanf("%d", &soluong);
 	danhsach=(Sinhvien*)malloc(soluong*sizeof(Sinhvien));
 	for(int i=0; i<soluong; i++){
 		printf("\nNhap sinh vien thu %d: ", i+1);
-		nhapSinhvien (&*(danhsach+i));
+		nhapSinhvien (&*(sv+i));
 	}
 }
-void xuatSinhvien (Sinhvien *danhsach, int soluong){
+void xuatSinhvien (Sinhvien *sv, int soluong){
 	printf("\n---Danh sach sinh vien---");
 	for(int i=0; i<soluong; i++){
 		printf("\nSinh vien thu: %d", i+1);
-		xuatSinhvien (danhsach+i);
+		xuatSinhvien (sv+i);
+	}
+}
+void hienthiThongtin(Sinhvien *sv, int soluong){
+	for (int i=0; i<soluong; i++){
+		printf("%-15s %-10s %-10d %-10s %-10s\n", (sv+i)->Masinhvien, (sv+i)->HovaTen, (sv+i)->Namsinh, (sv+i)->GioiTinh, (sv+i)->Noisinh);
+	}
+}
+void sapxepSinhvientheoTinh(Sinhvien *sv, int soluong){
+	Sinhvien tam;
+	for(int i=0; i<soluong; i++){
+		for(int j=i+1; j<soluong; j++){
+			if(strcmp((sv+i)->Noisinh,(sv+j)->Noisinh)>0){
+				tam = *(sv+i);
+				*(sv+i)=*(sv+j);
+				*(sv+j)=tam;
+			}
+		}
 	}
 }
