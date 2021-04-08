@@ -14,6 +14,7 @@ void nhapSinhvien (Sinhvien *&sv, int &soluong);
 void xuatSinhvien (Sinhvien *sv, int soluong);
 void sapxepSinhvientheoTinh(Sinhvien *sv, int soluong);
 void hienthiThongtin(Sinhvien *sv, int soluong);
+void thongkeSinhvienTheotinh(Sinhvien *sv, int soluong);
 int main(){
 	Sinhvien *sv;
 	int soluong;
@@ -22,6 +23,7 @@ int main(){
 	printf("-----Danh sach sap xep theo noi sinh-----\n");
 	printf("%-15s %-10s %-10s %-10s %-10s\n", "Ma sinh vien", "Ho va Ten", "Nam sinh", "Gioi tinh", "Noi sinh");
 	hienthiThongtin(sv,soluong);
+	thongkeSinhvienTheotinh(sv, soluong);
 }
 void nhapSinhvien (Sinhvien *sv){
 	fflush(stdin);
@@ -76,6 +78,19 @@ void sapxepSinhvientheoTinh(Sinhvien *sv, int soluong){
 				*(sv+i)=*(sv+j);
 				*(sv+j)=tam;
 			}
+		}
+	}
+}
+void thongkeSinhvienTheotinh(Sinhvien *sv, int soluong){
+	sapxepSinhvientheoTinh(sv,soluong);
+	int dem = 1;
+	for(int i=0; i<soluong; i++){
+		if((sv+i)->Noisinh == (sv+i+1)->Noisinh){
+			dem ++;
+		}
+		else{
+			printf("\n%s co %d sinh vien", (sv+i)->Noisinh, dem);
+			dem = 1;
 		}
 	}
 }
