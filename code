@@ -13,7 +13,7 @@ void nhap(Sinhvien *sinhvien);
 void xuat(Sinhvien *sinhvien);
 void nhap(Sinhvien *&danhsach, int &soluong);
 void xuat(Sinhvien *danhsach, int soluong);
-void sapXepTtheoTinh(Sinhvien *danhsach, int soluong);
+void sapXepTheoTinh(Sinhvien *danhsach, int soluong);
 void hienthiThongtin(Sinhvien *danhsach, int soluong);
 void thongKeTheoTinh(Sinhvien *danhsach, int soluong);
 void timKiemTheoTinh(Sinhvien *danhsach, int soluong);
@@ -106,7 +106,7 @@ void  timKiemTheoTinh(Sinhvien *danhsach, int soluong){
 	int tim=0;	
 	printf("\n%-15s %-15s %-15s %-15s %-15s %-15s\n", "Ma sinh vien", "Ho va Ten", "Nam sinh", "Gioi tinh", "Noi sinh", "So hop dong");
 	for(int i=0; i<soluong; i++){
-		if(strcmp(tentinh, ((danhsach+i)->noisinh))==0){
+		if(strcmp(tentinh, ((danhsach+i)->Noisinh))==0){
 			hienthiThongtin(danhsach+i, 1);
 			tim = 1;
 		}
@@ -126,7 +126,7 @@ void ghiFile(Sinhvien *danhsach, int soluong) {
     printf("%s",fPath);
 	FILE* fOut = fopen(fPath, "wb");
 	for(int i = 0; i < soluong; i++) {
-		fprintf(fOut, "%-15s %-10s %-10d %-10s %-10s %-10d\n", (danhsach+i)->masinhvien, (danhsach+i)->hoten, (danhsach+i)->namsinh, (danhsach+i)->gioitinh, (danhsach+i)->noisinh, (danhsach+i)->sohopdong);
+		fprintf(fOut, "%-15s %-10s %-10d %-10s %-10s %-10d\n", (danhsach+i)->Masinhvien, (danhsach+i)->HovaTen, (danhsach+i)->Namsinh, (danhsach+i)->GioiTinh, (danhsach+i)->Noisinh, (danhsach+i)->Sohopdong);
 	}
 	fclose(fOut);
 }
@@ -168,7 +168,7 @@ void menu(Sinhvien *danhsach, int soluong){
 				break;
             case 2:
                 if(daNhap){
-                    printf("\nBan da chon xuat DS sinh vien!");
+                    printf("\nBan da chon xuat danh sach sinh vien!");
                     xuat(danhsach,soluong);
                 }else{
                     printf("\nNhap danh sach Sinh Vien truoc!!!!");
@@ -193,7 +193,7 @@ void menu(Sinhvien *danhsach, int soluong){
                     printf("\nBan da chon tim sinh vien theo tinh.");
                     timKiemTheoTinh(danhsach, soluong);
                 }else{
-                    printf("\nNhap DS SV truoc!!!!");
+                    printf("\nNhap danh sach Sinh Vien truoc!!!!");
                 }
                 pressAnyKey();
                 break;
