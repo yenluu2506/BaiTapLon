@@ -149,7 +149,7 @@ void  timKiemTheoTinh(Sinhvien *danhsach, int soluong){
 void ghiFile(Sinhvien *danhsach, int soluong) {
 	getchar();
 	char fName[26];
-    char fPath[100]="./src/data/";
+    char fPath[100]="src/";
 	printf("\nNhap ten file: ");
 	gets(fName);
 	printf("\n");
